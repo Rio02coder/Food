@@ -6,7 +6,10 @@ const SearchScreen = () => {
     const [searchTerm, setTerm] = useState('')
     return (
         <View>
-            <SearchBar term={searchTerm} onTermChange={(newTerm) => setTerm(newTerm)}/>
+            <SearchBar term={searchTerm} 
+            onTermChange={(newTerm) => setTerm(newTerm)}
+            onTermEnter={(term) => {console.log(`${term} was added.`)}}
+            />
             <Text>Search</Text>
         </View>
     )
