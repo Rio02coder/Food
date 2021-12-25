@@ -1,9 +1,11 @@
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 const SearchBar = () => {
     return (
         <View style={styles.backgroudColor}>
+            <Feather name="search" size={30}/>
             <Text>Search</Text>
         </View>
     )
