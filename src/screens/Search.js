@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Text, StyleSheet, View } from "react-native";
 import SearchBar from "../Components/SearchBar";
 import useRestaurants from "../hooks/useRestaurants";
+import RestaurantList from "../Components/RestaurantList";
 
 const SearchScreen = () => {
     const [searchTerm, setTerm] = useState('')
@@ -15,6 +16,9 @@ const SearchScreen = () => {
             />
             {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
             <Text>Search results : {results.length}</Text>
+            <RestaurantList title="Cost Effective"/>
+            <RestaurantList title="Bit Pricier"/>
+            <RestaurantList title="Big Spender"/>
         </View>
     )
 }
