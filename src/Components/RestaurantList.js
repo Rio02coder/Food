@@ -18,7 +18,9 @@ const RestaurantList = ({title, restaurants, navigation}) => {
                     showsHorizontalScrollIndicator={false}
                     renderItem={({item}) => {
                         return (
-                            <TouchableOpacity onPress={() => navigation.navigate('RestaurantScreen')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('RestaurantScreen', {
+                                id: item.id
+                            })}>
                                 <ImageComponent 
                                 url={item.image_url}
                                 name={item.name}
