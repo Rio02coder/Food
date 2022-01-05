@@ -1,8 +1,9 @@
 import React from 'react'
-import {View, Text, StyleSheet, FlatList} from 'react-native'
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
 import ImageComponent from './Image Component'
+import { withNavigation } from 'react-navigation'
 
-const RestaurantList = ({title, restaurants}) => {
+const RestaurantList = ({title, restaurants, navigation}) => {
     if(restaurants.length === 0) {
         return null
     }
@@ -17,12 +18,14 @@ const RestaurantList = ({title, restaurants}) => {
                     showsHorizontalScrollIndicator={false}
                     renderItem={({item}) => {
                         return (
-                            <ImageComponent 
-                            url={item.image_url}
-                            name={item.name}
-                            rating={item.rating}
-                            review_count={item.review_count}
-                            />
+                            <TouchableOpacity onPress={() => navigation.navigate('RestaurantScreen')}>
+                                <ImageComponent 
+                                url={item.image_url}
+                                name={item.name}
+                                rating={item.rating}
+                                review_count={item.review_count}
+                                />
+                            </TouchableOpacity>
                         )
                     }}
                 />
@@ -43,4 +46,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RestaurantList
+export default withNavigation(RestaurantList)
