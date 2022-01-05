@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { Text, View, StyleSheet, FlatList, Image, ScrollView} from 'react-native';
+import { Text, View, StyleSheet, FlatList, Image, ScrollView, Dimensions} from 'react-native';
 import yelp from '../api/yelp'
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 const restaurantScreen = ({navigation}) => {
     const id = navigation.getParam('id')
@@ -19,7 +21,7 @@ const restaurantScreen = ({navigation}) => {
     else {
         return(
             <ScrollView>
-                <View>
+                <View style={{flex:1}}>
                     <Text style={styles.restaurantNameStyle}>{restaurant.name}</Text>
                     <FlatList
                         data={restaurant.photos}
@@ -32,6 +34,16 @@ const restaurantScreen = ({navigation}) => {
                         }}
                     />
                     {restaurant.is_closed ? <Text style={styles.closedStyle}>Closed</Text> : <Text style={styles.openStyle}>Open</Text>}
+                    <MapView
+                        style={styles.map}
+                        initialRegion={{
+                        latitude: restaurant.coordinates.latitude,
+                        longitude: restaurant.coordinates.longitude,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                        }}>
+                            <Marker coordinate={{ latitude : restaurant.coordinates.latitude , longitude : restaurant.coordinates.longitude }} />
+                    </MapView>
                 </View>
             </ScrollView>
         )
@@ -68,6 +80,14 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginTop: 10
     },
+    map: {
+        height: 250,
+        width: Dimensions.get('window').width,
+        marginTop: 20,
+        marginHorizontal: 5,
+        borderRadius: 5,
+        flex: 1
+    }
 })
 
 export default restaurantScreen
