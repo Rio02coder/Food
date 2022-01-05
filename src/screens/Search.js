@@ -13,11 +13,9 @@ const SearchScreen = () => {
         <View>
             <SearchBar term={searchTerm} 
             onTermChange={(newTerm) => setTerm(newTerm)}
-            onTermSubmit={() => {SearchApi()}}
+            onTermSubmit={() => {SearchApi(searchTerm)}}
             />
             {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
-            <Text>Search results : {results.length}</Text>
-
             <RestaurantList title="Cost Effective"
             restaurants={filterRestaurantsWithPrice(results,'$')}
             />
@@ -25,7 +23,7 @@ const SearchScreen = () => {
             restaurants={filterRestaurantsWithPrice(results,'$$')}
             />
             <RestaurantList title="Big Spender"
-            restaurants={filterRestaurantsWithPrice(results,'$')}
+            restaurants={filterRestaurantsWithPrice(results,'$$$$')}
             />
         </View>
     )
