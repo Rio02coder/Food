@@ -25,9 +25,9 @@ export default () => {
 
     // Call to the useEffect hook
 
-    // useEffect(() => {
-    //     SearchApi('pizza')
-    // }, [])
+    useEffect(() => {
+        SearchApi('')
+    }, [])
 
     return [SearchApi,results,errorMessage]
 }
