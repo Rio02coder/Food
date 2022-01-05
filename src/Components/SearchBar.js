@@ -1,21 +1,23 @@
 import React from "react";
-import { TextInput, StyleSheet, View } from "react-native";
+import { TextInput, StyleSheet, View, TouchableWithoutFeedback, Keyboard} from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 const SearchBar = ({term, onTermChange, onTermSubmit}) => {
     return (
-        <View style={styles.backgroudStyle}>
-            <Feather name="search" size={30} style={styles.searchIconStyle}/>
-            <TextInput 
-            placeholder="search" 
-            style={styles.textInputStyle}
-            value={term}
-            onChangeText={(newTerm) => onTermChange(newTerm)}
-            onEndEditing={(term) => onTermSubmit(term)}
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-        </View>
+        <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss}>
+            <View style={styles.backgroudStyle}>
+                <Feather name="search" size={30} style={styles.searchIconStyle}/>
+                <TextInput 
+                placeholder="search" 
+                style={styles.textInputStyle}
+                value={term}
+                onChangeText={(newTerm) => onTermChange(newTerm)}
+                onEndEditing={(term) => onTermSubmit(term)}
+                autoCapitalize="none"
+                autoCorrect={false}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 
